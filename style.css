@@ -73,4 +73,10 @@ button
   .demo img{
     margin: auto;
   }
+  .quote {
+    margin: auto;
+  }
+  html {
+        zoom: .4;
+      }
 }
