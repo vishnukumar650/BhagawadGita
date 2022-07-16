@@ -1,8 +1,9 @@
 body {
-  background-color: #ff4da6;
+  background-image: linear-gradient(270deg, red,yellow,green);
+  max-height: 1vh;
 }
   #parent{
-    width: fit-content;
+  width: fit-content;
   margin: auto;
 }
 

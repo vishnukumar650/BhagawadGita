@@ -68,13 +68,19 @@ function change()
     let b=Math.floor(Math.random()*quotations.length);
     quote.innerHTML=quotations[b];
     
-    let color="#";
+    let x="#";
+    let y="#";
+    let z="#";
     for(let i=0;i<6;i++)
     {
-        let index=Math.floor(Math.random()*hex.length);
-        color+=hex[index];
+        x+=hex[Math.floor(Math.random()*hex.length)];
+        y+=hex[Math.floor(Math.random()*hex.length)];
+        z+=hex[Math.floor(Math.random()*hex.length)];
     }
-    document.body.style.backgroundColor = color;
+    let arr = [90,270];
+    let deg = arr[Math.floor(Math.random()*arr.length)];
+    document.body.style.backgroundImage= `linear-gradient(${deg}deg,${x}, ${y}, ${z})`;
+    console.log(deg);
 }
 
 document.addEventListener('keydown', (e) => {
