@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagavad Gita</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+</head>
+<body onload="autoClick()">
+    <audio id="myAudio" loop>
+        <source src="audio/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+   
+    <i class="fa fa-play" onclick="playAudio()" id="playButton"></i>
+
+    <h1 id="title" class="glow">Bhagavad Gita</h1>
+    <div id="parent">
+        <div class="demo">
+            <img src="img/gita1.jpg" width="300px" height="350px" alt="image is not available">
+            <h1 id="demo" class="quote"> The darkness of many years in your life will now disappear.</h1>
+        </div>
+         <a id="download">Download</a>
+    </div>
+    <button onclick="change()">Next</button>
+    <script src="script.js"></script>
+</body>
+</html>
