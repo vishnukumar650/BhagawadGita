@@ -50,11 +50,6 @@ button
 }
 
 
-#download{
-  display: block;
-  text-align:right;
-}
-
 
 .glow {
   font-size: 50px;
@@ -63,6 +58,28 @@ button
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
+}
+
+#download{
+  display: block;
+  text-align:right;
+  font-size: 15px;
+  font-weight: bolder;
+}
+
+#link1{
+  display: inline-block;
+  font-size: 20px;
+  position: fixed;
+  left: 5px;
+  bottom: 5px;
+}
+#link2{
+  display: inline-block;
+  font-size: 20px;
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
 }
 
 @-webkit-keyframes glow {
