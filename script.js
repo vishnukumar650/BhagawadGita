@@ -88,28 +88,75 @@ document.addEventListener('keydown', (e) => {
         change();
     }
     else if (e.keyCode == 32){
-      playAudio();
+
+      if(playpause1.classList.contains('fa-pause')){
+        x.pause();
+        document.getElementById('playpause1').classList.remove("fa-pause");
+        document.getElementById('playpause1').classList.add("fa-play");
+        playAudio2();
+      }
+      else{
+        y.pause();
+        document.getElementById('playpause2').classList.remove("fa-pause");
+        document.getElementById('playpause2').classList.add("fa-play");
+        playAudio1();
+      }
+    }
+    else if(e.keyCode == 27){
+     if(playpause1.classList.contains('fa-pause')){
+        x.pause();
+        document.getElementById('playpause1').classList.remove("fa-pause");
+        document.getElementById('playpause1').classList.add("fa-play");
+      }
+      else{
+        y.pause();
+        document.getElementById('playpause2').classList.remove("fa-pause");
+        document.getElementById('playpause2').classList.add("fa-play");
+      }
     }
 })
 
-var x = document.getElementById("myAudio"); 
+var x = document.getElementById("myAudio1"); 
 
-let playpause = document.getElementById("playpause");
+let playpause1 = document.getElementById("playpause1");
 
-function playAudio() { 
+function playAudio1() { 
 
-  if(playpause.classList.contains('fa-play')){
+  if(playpause1.classList.contains('fa-play')){
     x.play();
-    document.getElementById('playpause').classList.remove("fa-play");
-    document.getElementById('playpause').classList.add("fa-pause");
+    document.getElementById('playpause1').classList.remove("fa-play");
+    document.getElementById('playpause1').classList.add("fa-pause");
   }
   else{
     x.pause();
-    document.getElementById('playpause').classList.remove("fa-pause");
-    document.getElementById('playpause').classList.add("fa-play");
+    document.getElementById('playpause1').classList.remove("fa-pause");
+    document.getElementById('playpause1').classList.add("fa-play");
   }
   
 } 
+
+var y = document.getElementById("myAudio2"); 
+
+let playpause2 = document.getElementById("playpause2");
+
+function playAudio2() { 
+
+  if(playpause2.classList.contains('fa-play')){
+    y.play();
+    document.getElementById('playpause2').classList.remove("fa-play");
+    document.getElementById('playpause2').classList.add("fa-pause");
+  }
+  else{
+    y.pause();
+    document.getElementById('playpause2').classList.remove("fa-pause");
+    document.getElementById('playpause2').classList.add("fa-play");
+  }
+  
+} 
+
+
+
+
 
 let copyText = document.getElementsByClassName('quote')[0];
 

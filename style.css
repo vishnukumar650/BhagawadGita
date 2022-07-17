@@ -7,6 +7,15 @@ body {
   margin: auto;
 }
 
+#music{
+  display: flex;
+  justify-content: space-between;
+}
+
+#music i{
+  margin: 5px;
+}
+
 #title
 {
    margin: auto;
@@ -40,10 +49,6 @@ button
     height: 50px;
 }
 
-#playpause {
-  margin-left: 5px;
-  margin-top: 5px;
-}
 
 #download{
   display: block;

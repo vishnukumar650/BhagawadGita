@@ -19,14 +19,21 @@
 </head>
 
 <body onload="autoClick()">
-    <audio id="myAudio" loop>
-        <source src="audio/music.mp3" type="audio/mpeg">
+    <audio id="myAudio1" loop>
+        <source src="audio/music1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-   
-    <i class="fa fa-play" onclick="playAudio()" id="playpause"></i>
 
-    
+    <audio id="myAudio2" loop>
+        <source src="audio/music2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div id="music">
+    <i class="fa fa-play" onclick="playAudio1()" id="playpause1"></i>
+
+    <i class="fa fa-play fa-rotate-180" onclick="playAudio2()" id="playpause2"></i>
+    </div>
+
     <div id="parent">
         <h1 id="title" class="glow">Bhagavad Gita</h1>
         <div class="demo">
