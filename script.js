@@ -87,6 +87,9 @@ document.addEventListener('keydown', (e) => {
     if (e.keyCode >= 37 && e.keyCode <= 40){
         change();
     }
+    else if (e.keyCode == 32){
+      playAudio();
+    }
 })
 
 var x = document.getElementById("myAudio"); 
