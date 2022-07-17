@@ -1,8 +1,8 @@
 body {
   background-image: linear-gradient(270deg, red,yellow,green);
-  max-height: 1vh;
+  margin: auto;
 }
-  #parent{
+#parent{
   width: fit-content;
   margin: auto;
 }
@@ -40,6 +40,11 @@ button
     height: 50px;
 }
 
+#playpause {
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
 #download{
   display: block;
   text-align:right;
@@ -64,7 +69,7 @@ button
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 520px) {
   #parent {
     box-sizing: border-box;
   }
@@ -80,4 +85,24 @@ button
   html {
         zoom: .4;
       }
+}
+
+@media only screen and (max-width: 829px) {
+  body{
+    margin: auto;
+  }
+
+  #parent {
+    margin: auto;
+  }
+  .demo {
+    max-width: min-content;
+    margin: auto;
+  }
+  .demo img{
+    margin: auto;
+  }
+  .quote {
+    margin: auto;
+  }
 }

@@ -91,19 +91,19 @@ document.addEventListener('keydown', (e) => {
 
 var x = document.getElementById("myAudio"); 
 
-let playpause = document.getElementById("playButton");
+let playpause = document.getElementById("playpause");
 
 function playAudio() { 
 
   if(playpause.classList.contains('fa-play')){
     x.play();
-    document.getElementById('playButton').classList.remove("fa-play");
-    document.getElementById('playButton').classList.add("fa-pause");
+    document.getElementById('playpause').classList.remove("fa-play");
+    document.getElementById('playpause').classList.add("fa-pause");
   }
   else{
     x.pause();
-    document.getElementById('playButton').classList.remove("fa-pause");
-    document.getElementById('playButton').classList.add("fa-play");
+    document.getElementById('playpause').classList.remove("fa-pause");
+    document.getElementById('playpause').classList.add("fa-play");
   }
   
 } 
