@@ -114,7 +114,25 @@ document.addEventListener('keydown', (e) => {
         document.getElementById('playpause2').classList.add("fa-play");
       }
     }
-})
+});
+
+function playAudio(){
+  if(playpause1.classList.contains("fa-pause")){
+    x.pause();
+    document.getElementById('playpause1').classList.remove("fa-pause");
+    document.getElementById('playpause1').classList.add("fa-play");
+    playAudio2();
+  }
+  else{
+    y.pause();
+    document.getElementById('playpause2').classList.remove("fa-pause");
+    document.getElementById('playpause2').classList.add("fa-play");
+    playAudio1();
+  }
+}
+
+
+
 
 var x = document.getElementById("myAudio1"); 
 
