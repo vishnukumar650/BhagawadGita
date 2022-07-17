@@ -62,6 +62,7 @@ let image=document.getElementsByTagName("img")[0];
 let quote=document.getElementById("demo");
 function change()
 {
+    autoClick();
     let a=Math.floor(Math.random()*16);
     let imgName="img/gita"+a+".jpg";
     image.setAttribute("src",imgName);
