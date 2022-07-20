@@ -202,4 +202,11 @@ function autoClick(){
           });
 
         });
-      });
+      })
+
+
+// autoClick function is called when the window is resized
+
+window.addEventListener('resize', () => {
+  autoClick();
+});
