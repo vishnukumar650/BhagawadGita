@@ -85,61 +85,24 @@ function change()
     divToImg();
 }
 
-document.addEventListener('keydown', (e) => {
-    if (e.keyCode >= 37 && e.keyCode <= 40){
-        change();
-    }
-    else if (e.keyCode == 32){
-
-      if(playpause1.classList.contains('fa-pause')){
-        x.pause();
-        document.getElementById('playpause1').classList.remove("fa-pause");
-        document.getElementById('playpause1').classList.add("fa-play");
-        playAudio2();
-      }
-      else{
-        y.pause();
-        document.getElementById('playpause2').classList.remove("fa-pause");
-        document.getElementById('playpause2').classList.add("fa-play");
-        playAudio1();
-      }
-    }
-    else if(e.keyCode == 27){
-     if(playpause1.classList.contains('fa-pause')){
-        x.pause();
-        document.getElementById('playpause1').classList.remove("fa-pause");
-        document.getElementById('playpause1').classList.add("fa-play");
-      }
-      else{
-        y.pause();
-        document.getElementById('playpause2').classList.remove("fa-pause");
-        document.getElementById('playpause2').classList.add("fa-play");
-      }
-    }
-});
-
-
-
 var x = document.getElementById("myAudio1"); 
 
 let playpause1 = document.getElementById("playpause1");
 
+let musicstatus = 'not playing';
+
 function playAudio1() { 
 
-  if(playpause1.classList.contains('fa-play')){
-    if(playpause2.classList.contains('fa-pause')){
-      y.pause();
-      document.getElementById('playpause2').classList.remove("fa-pause");
-      document.getElementById('playpause2').classList.add("fa-play");
-    }
+  if(playpause1.classList.contains("fa-play")) {
     x.play();
-    document.getElementById('playpause1').classList.remove("fa-play");
-    document.getElementById('playpause1').classList.add("fa-pause");
+    playpause1.classList.remove("fa-play");
+    playpause1.classList.add("fa-pause");
+    musicstatus = 'music1';
   }
   else{
     x.pause();
-    document.getElementById('playpause1').classList.remove("fa-pause");
-    document.getElementById('playpause1').classList.add("fa-play");
+    playpause1.classList.remove("fa-pause");
+    playpause1.classList.add("fa-play");
   }
   
 } 
@@ -150,27 +113,21 @@ let playpause2 = document.getElementById("playpause2");
 
 function playAudio2() { 
 
-  if(playpause2.classList.contains('fa-play')){
-    if(playpause1.classList.contains('fa-pause')){
-      x.pause();
-      document.getElementById('playpause1').classList.remove("fa-pause");
-      document.getElementById('playpause1').classList.add("fa-play");
-    }
+  if(playpause2.classList.contains("fa-play")) {
     y.play();
-    document.getElementById('playpause2').classList.remove("fa-play");
-    document.getElementById('playpause2').classList.add("fa-pause");
+    playpause2.classList.remove("fa-play");
+    playpause2.classList.add("fa-pause");
+    musicstatus = 'music2';
   }
   else{
     y.pause();
-    document.getElementById('playpause2').classList.remove("fa-pause");
-    document.getElementById('playpause2').classList.add("fa-play");
+    playpause2.classList.remove("fa-pause");
+    playpause2.classList.add("fa-play");
   }
   
 } 
 
-
-
-
+// Copys the Quote to clipboard on the click
 
 let copyText = document.getElementsByClassName('quote')[0];
 
@@ -206,8 +163,44 @@ function divToImg(){
       })
 
 
-// autoClick function is called when the window is resized
+// play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown
+
+let count = 0;
+
+document.addEventListener('keydown', (e) => {
+    if (e.keyCode >= 37 && e.keyCode <= 40){
+        change();
+    }
+    else if (e.keyCode == 32){
+
+      if(count == 0) {  
+        playAudio1();
+      }
+      else if(count%2==0){
+        playAudio2();
+        playAudio1();
+      }
+      else if(count%2==1) {
+        playAudio1();   
+        playAudio2(); 
+      }
+      count++;
+    }
+    else if(e.keyCode == 27){
+     
+      if(musicstatus == 'music1')
+        playAudio1();
+      else
+        playAudio2();
+
+    }
+});
+
+
+
+// divToImg function is called when the window is resized
 
 window.addEventListener('resize', () => {
   divToImg();
 });
+
