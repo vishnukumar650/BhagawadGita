@@ -200,7 +200,7 @@ document.addEventListener('keydown', (e) => {
         playAudio2();
 
     }
-    console.log("sf"+e.key+"hkj");
+    
 });
 
 
