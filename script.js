@@ -97,6 +97,11 @@ function playAudio1() {
     x.play();
     playpause1.classList.remove("fa-play");
     playpause1.classList.add("fa-pause");
+
+    y.pause();
+    playpause2.classList.remove("fa-pause");
+    playpause2.classList.add("fa-play");
+
     musicstatus = 'music1';
   }
   else{
@@ -117,6 +122,11 @@ function playAudio2() {
     y.play();
     playpause2.classList.remove("fa-play");
     playpause2.classList.add("fa-pause");
+
+    x.pause();
+    playpause1.classList.remove("fa-pause");
+    playpause1.classList.add("fa-play");
+
     musicstatus = 'music2';
   }
   else{
@@ -165,26 +175,16 @@ function divToImg(){
 
 // play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown
 
-let count = 0;
-
 document.addEventListener('keydown', (e) => {
     if (e.keyCode >= 37 && e.keyCode <= 40){
         change();
     }
     else if (e.keyCode == 32){
 
-      if(count == 0) {  
-        playAudio1();
-      }
-      else if(count%2==0){
-        playAudio2();
-        playAudio1();
-      }
-      else if(count%2==1) {
-        playAudio1();   
-        playAudio2(); 
-      }
-      count++;
+        if(playpause1.classList.contains('fa-play'))
+          playAudio1();
+        else
+          playAudio2();
     }
     else if(e.keyCode == 27){
      
