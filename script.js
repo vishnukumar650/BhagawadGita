@@ -175,18 +175,24 @@ function divToImg(){
 
 // play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown
 
+let arrowkeys = [ "Down", "Up", "Left", "Right", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Space Bar"];
+
+let spacebar = ["Space Bar","Spacebar"," "];
+
+let escapeKey = ["Esc", "Escape"];
+
 document.addEventListener('keydown', (e) => {
-    if (e.keyCode >= 37 && e.keyCode <= 40){
+    if (arrowkeys.includes(e.key)) {
         change();
     }
-    else if (e.keyCode == 32){
+    else if (spacebar.includes(e.key)) {
 
         if(playpause1.classList.contains('fa-play'))
           playAudio1();
         else
           playAudio2();
     }
-    else if(e.keyCode == 27){
+    else if(escapeKey.includes(e.key)){
      
       if(musicstatus == 'music1')
         playAudio1();
@@ -194,6 +200,7 @@ document.addEventListener('keydown', (e) => {
         playAudio2();
 
     }
+    console.log("sf"+e.key+"hkj");
 });
 
 
