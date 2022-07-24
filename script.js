@@ -62,7 +62,7 @@ let image=document.getElementsByTagName("img")[0];
 let quote=document.getElementById("demo");
 function change()
 {
-    autoClick();
+    
     let a=Math.floor(Math.random()*16);
     let imgName="img/gita"+a+".jpg";
     image.setAttribute("src",imgName);
@@ -81,7 +81,8 @@ function change()
     let arr = [90,270];
     let deg = arr[Math.floor(Math.random()*arr.length)];
     document.body.style.backgroundImage= `linear-gradient(${deg}deg,${x}, ${y}, ${z})`;
-    console.log(deg);
+    
+    divToImg();
 }
 
 document.addEventListener('keydown', (e) => {
@@ -184,7 +185,7 @@ copyText.addEventListener('click', () => {
 
 // div to image
 
-function autoClick(){
+function divToImg(){
         $("#download").click();
       }
 
@@ -208,5 +209,5 @@ function autoClick(){
 // autoClick function is called when the window is resized
 
 window.addEventListener('resize', () => {
-  autoClick();
+  divToImg();
 });
