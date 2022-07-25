@@ -181,6 +181,8 @@ let spacebar = ["Space Bar","Spacebar"," "];
 
 let escapeKey = ["Esc", "Escape"];
 
+let surprise = "";
+
 document.addEventListener('keydown', (e) => {
     if (arrowkeys.includes(e.key)) {
         change();
@@ -200,9 +202,17 @@ document.addEventListener('keydown', (e) => {
         playAudio2();
 
     }
-    
+    else if(e.key == "b"){
+      surprise+=e.key;
+    }
+    else if(surprise=="b" && e.key == "g"){
+        document.body.innerHTML = "";
+        console.log('You unlocked a Surprise Gift');
+        document.body.innerHTML = `<div style="display: grid;align-items: center;text-align: center;height: 100vh;background-color: yellow"><h1 style="font-size: 50px;color: orangered"; class="glow">Surprise unlocked, wait for a moment</h1></div>`;
+        setTimeout(()=> {window.location.replace("img/lifelessons.png")},5000);
+        surprise = "";
+    }
 });
-
 
 
 // divToImg function is called when the window is resized
