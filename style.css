@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(270deg, red,yellow,green);
+  background-image: linear-gradient(270deg, rgb(80, 101, 20), rgb(142, 241, 245), rgb(88, 54, 244));
   margin: auto;
 }
 #parent{
