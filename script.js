@@ -173,7 +173,7 @@ function divToImg(){
       })
 
 
-// play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown
+// play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown, Shortcut keys and more
 
 let arrowkeys = [ "Down", "Up", "Left", "Right", "ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Space Bar"];
 
@@ -183,6 +183,8 @@ let escapeKey = ["Esc", "Escape"];
 
 let surprise = "";
 
+let zodiacs = ["","z","zo","zod","zodi","zodia","Z","ZO","ZOD","ZODI","ZODIA"];
+    
 document.addEventListener('keydown', (e) => {
     if (arrowkeys.includes(e.key)) {
         change();
@@ -202,15 +204,36 @@ document.addEventListener('keydown', (e) => {
         playAudio2();
 
     }
-    else if(e.key == "b"){
+    else if(e.key == "b" || e.key == "B"){
       surprise+=e.key;
     }
-    else if(surprise=="b" && e.key == "g"){
+    else if((surprise=="b" || surprise=="B") && (e.key == "g")|| (e.key == "G")){
         document.body.innerHTML = "";
         console.log('You unlocked a Surprise Gift');
         document.body.innerHTML = `<div style="display: grid;align-items: center;text-align: center;height: 100vh;background-color: yellow"><h1 style="font-size: 50px;color: orangered"; class="glow">Surprise unlocked, wait for a moment</h1></div>`;
         setTimeout(()=> {window.location.replace("img/lifelessons.png")},5000);
         surprise = "";
+    }
+    else if((e.key == "m") || (surprise=="m" && e.key == "e") || (surprise=="me" && e.key == "n")){
+      surprise+=e.key;
+    }
+    else if(surprise=="men" && e.key == "u"){
+      Swal.fire(`
+      Spacebar Key - Play the Music \n 
+      Esc Key - Pause the Music \n 
+      Menu - Displays All Shortcut Keys \n
+      Arrow Keys - Change Quotation \n
+      Spacebar Key - Play the Music \n 
+      Esc Key - Pause the Music \n
+      menu - Displays All Shortcut Keys \n
+      Arrow Keys - Change Quotation 
+      `);
+      surprise = "";
+    }
+    else if(zodiacs.includes(surprise) && (e.key == "c" || e.key == "C")){
+      surprise += e.key;
+      console.log(surprise);
+      setTimeout(()=> {window.location.replace("./zodiac/index.html")},1000);
     }
 });
 
