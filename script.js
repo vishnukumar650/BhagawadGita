@@ -89,6 +89,7 @@ let playpause1 = document.getElementById("playpause1");
 let playIcon1 = document.getElementById("playIcon1");
 
 let musicstatus = 'not playing';
+let currentTrack = null;
 
 function setMusicButtonState(activeButton, activeIcon, inactiveButton, inactiveIcon) {
   activeButton.classList.add("is-playing");
@@ -112,6 +113,7 @@ function clearMusicButtonState(button, icon) {
 function playAudio1() { 
 
   if(musicstatus !== 'music1') {
+    currentTrack = 'music1';
     setMusicButtonState(playpause1, playIcon1, playpause2, playIcon2);
     x.play().catch(() => {});
 
@@ -135,6 +137,7 @@ let playIcon2 = document.getElementById("playIcon2");
 function playAudio2() { 
 
   if(musicstatus !== 'music2') {
+    currentTrack = 'music2';
     setMusicButtonState(playpause2, playIcon2, playpause1, playIcon1);
     y.play().catch(() => {});
 
@@ -218,17 +221,18 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
 
         if(musicstatus === 'music1')
-          playAudio1();
-        else if(musicstatus === 'music2')
           playAudio2();
         else
           playAudio1();
     }
     else if(escapeKey.includes(e.key)){
-     
-      if(musicstatus == 'music1')
+      if(currentTrack === 'music1' && !x.paused)
         playAudio1();
-      else
+      else if(currentTrack === 'music2' && !y.paused)
+        playAudio2();
+      else if(currentTrack === 'music1')
+        playAudio1();
+      else if(currentTrack === 'music2')
         playAudio2();
 
     }
