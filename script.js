@@ -67,7 +67,7 @@ function change()
     let imgName="img/gita"+a+".jpg";
     image.setAttribute("src",imgName);
     let b=Math.floor(Math.random()*quotations.length);
-    quote.innerHTML=quotations[b];
+    quote.textContent = quotations[b];
     
     let x="#";
     let y="#";
@@ -81,8 +81,6 @@ function change()
     let arr = [90,270];
     let deg = arr[Math.floor(Math.random()*arr.length)];
     document.body.style.backgroundImage= `linear-gradient(${deg}deg,${x}, ${y}, ${z})`;
-    
-    divToImg();
 }
 
 var x = document.getElementById("myAudio1"); 
@@ -97,10 +95,12 @@ function playAudio1() {
     x.play();
     playpause1.classList.remove("fa-play");
     playpause1.classList.add("fa-pause");
+    playpause1.classList.add("is-playing");
 
     y.pause();
     playpause2.classList.remove("fa-pause");
     playpause2.classList.add("fa-play");
+    playpause2.classList.remove("is-playing");
 
     musicstatus = 'music1';
   }
@@ -108,6 +108,7 @@ function playAudio1() {
     x.pause();
     playpause1.classList.remove("fa-pause");
     playpause1.classList.add("fa-play");
+    playpause1.classList.remove("is-playing");
   }
   
 } 
@@ -122,10 +123,12 @@ function playAudio2() {
     y.play();
     playpause2.classList.remove("fa-play");
     playpause2.classList.add("fa-pause");
+    playpause2.classList.add("is-playing");
 
     x.pause();
     playpause1.classList.remove("fa-pause");
     playpause1.classList.add("fa-play");
+    playpause1.classList.remove("is-playing");
 
     musicstatus = 'music2';
   }
@@ -133,6 +136,7 @@ function playAudio2() {
     y.pause();
     playpause2.classList.remove("fa-pause");
     playpause2.classList.add("fa-play");
+    playpause2.classList.remove("is-playing");
   }
   
 } 
@@ -150,27 +154,32 @@ copyText.addEventListener('click', () => {
 });
 
 
-// div to image
+// Generate a downloadable image of the current quote card.
 
-function divToImg(){
-        $("#download").click();
+$(document).ready(function(){
+  var element = $(".quote-card");
+
+  $("#download").on('click', function(e){
+    e.preventDefault();
+
+    element.addClass("is-exporting");
+
+    html2canvas(element, {
+      onrendered: function(canvas) {
+        var newData = canvas.toDataURL("image/jpeg");
+
+        var link = document.createElement("a");
+        link.download = "bhagavad-gita-quote.jpg";
+        link.href = newData;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        element.removeClass("is-exporting");
       }
-
-      $(document).ready(function(){
-        var element = $(".demo");
-
-        $("#download").on('click', function(){
-
-          html2canvas(element, {
-            onrendered: function(canvas) {
-              var imageData = canvas.toDataURL("image/jpg");
-              var newData = imageData.replace(/^data:image\/jpg/, "data:application/octet-stream");
-              $("#download").attr("download", "image.jpg").attr("href", newData);
-            }
-          });
-
-        });
-      })
+    });
+  });
+})
 
 
 // play/pause the music on spacebar and esc key. Change function is called on any arrow keyDown, Shortcut keys and more
@@ -235,11 +244,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// divToImg function is called when the window is resized
+// Keep the card static on resize; the browser layout now handles responsiveness.
 
-window.addEventListener('resize', () => {
-  divToImg();
-});
+
 
 
 

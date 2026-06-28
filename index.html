@@ -20,7 +20,7 @@
     <!-- End of Favicon Links-->
 </head>
 
-<body onload="divToImg()">
+<body>
     <audio id="myAudio1" loop>
         <source src="audio/music1.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
@@ -30,26 +30,48 @@
         <source src="audio/music2.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <div id="music">
-    <i class="fa fa-play" onclick="playAudio1()" id="playpause1"></i>
+    <main class="page-shell">
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Sacred wisdom, reimagined</p>
+                <h1 id="title">Bhagavad Gita</h1>
+                <p class="intro">Explore timeless verses, switch between two background chants, and export the current quote card as an image.</p>
+            </div>
 
-    <i class="fa fa-play fa-rotate-180" onclick="playAudio2()" id="playpause2"></i>
-    </div>
+            <div id="music" class="music-panel" aria-label="Music controls">
+                <button type="button" class="music-button" onclick="playAudio1()" id="playpause1" aria-label="Toggle first background track">
+                    <i class="fa fa-play"></i>
+                    <span>Track 1</span>
+                </button>
 
-    <div id="parent">
-        <h1 id="title" class="glow">Bhagavad Gita</h1>
-        <div class="demo">
-            <img src="img/gita0.jpg" width="300px" height="350px" alt="image is not available">
-            <h1 id="demo" class="quote">Through selfless service, you will always be fruitful and find the fulfillment of your desires.</h1>
-        </div>
-         <a id="download" class="glow">Download</a>
-         <button onclick="change()">Next</button>
-    </div>
-    
-    <div id="links"> 
-        <a id="link1" class="glow" href="./books/english.pdf" target="_blank">Read Gita in English</a>
-        <a id="link2" class="glow" href="./books/telugu.pdf" target="_blank">Read Gita in Telugu</a>
-    </div>
+                <button type="button" class="music-button music-button--reverse" onclick="playAudio2()" id="playpause2" aria-label="Toggle second background track">
+                    <i class="fa fa-play"></i>
+                    <span>Track 2</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="parent" class="quote-card">
+            <div class="quote-media">
+                <img src="img/gita0.jpg" alt="Bhagavad Gita illustration" width="300" height="350">
+            </div>
+            <div class="quote-copy">
+                <p class="quote-label">Daily reflection</p>
+                <blockquote id="demo" class="quote">Through selfless service, you will always be fruitful and find the fulfillment of your desires.</blockquote>
+                <p class="quote-hint">Click the quote to copy it.</p>
+            </div>
+        </section>
+
+        <section class="actions">
+            <button type="button" class="primary-action" onclick="change()">Next quote</button>
+            <a id="download" class="secondary-action" href="#">Download image</a>
+        </section>
+
+        <section id="links" class="book-links" aria-label="Reading options">
+            <a id="link1" class="book-link" href="./books/english.pdf" target="_blank" rel="noopener">Read in English</a>
+            <a id="link2" class="book-link" href="./books/telugu.pdf" target="_blank" rel="noopener">Read in Telugu</a>
+        </section>
+    </main>
     <!-- Rock -->
     <script src="script.js"></script>
     <!-- Hello -->
