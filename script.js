@@ -215,6 +215,7 @@ document.addEventListener('keydown', (e) => {
         change();
     }
     else if (spacebar.includes(e.key)) {
+        e.preventDefault();
 
         if(musicstatus === 'music1')
           playAudio1();
