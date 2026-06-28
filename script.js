@@ -86,29 +86,43 @@ function change()
 var x = document.getElementById("myAudio1"); 
 
 let playpause1 = document.getElementById("playpause1");
+let playIcon1 = document.getElementById("playIcon1");
 
 let musicstatus = 'not playing';
 
+function setMusicButtonState(activeButton, activeIcon, inactiveButton, inactiveIcon) {
+  activeButton.classList.add("is-playing");
+  activeButton.setAttribute("aria-pressed", "true");
+  activeIcon.classList.remove("fa-play");
+  activeIcon.classList.add("fa-pause");
+
+  inactiveButton.classList.remove("is-playing");
+  inactiveButton.setAttribute("aria-pressed", "false");
+  inactiveIcon.classList.remove("fa-pause");
+  inactiveIcon.classList.add("fa-play");
+}
+
+function clearMusicButtonState(button, icon) {
+  button.classList.remove("is-playing");
+  button.setAttribute("aria-pressed", "false");
+  icon.classList.remove("fa-pause");
+  icon.classList.add("fa-play");
+}
+
 function playAudio1() { 
 
-  if(playpause1.classList.contains("fa-play")) {
-    x.play();
-    playpause1.classList.remove("fa-play");
-    playpause1.classList.add("fa-pause");
-    playpause1.classList.add("is-playing");
+  if(musicstatus !== 'music1') {
+    setMusicButtonState(playpause1, playIcon1, playpause2, playIcon2);
+    x.play().catch(() => {});
 
     y.pause();
-    playpause2.classList.remove("fa-pause");
-    playpause2.classList.add("fa-play");
-    playpause2.classList.remove("is-playing");
 
     musicstatus = 'music1';
   }
   else{
     x.pause();
-    playpause1.classList.remove("fa-pause");
-    playpause1.classList.add("fa-play");
-    playpause1.classList.remove("is-playing");
+    clearMusicButtonState(playpause1, playIcon1);
+    musicstatus = 'not playing';
   }
   
 } 
@@ -116,27 +130,22 @@ function playAudio1() {
 var y = document.getElementById("myAudio2"); 
 
 let playpause2 = document.getElementById("playpause2");
+let playIcon2 = document.getElementById("playIcon2");
 
 function playAudio2() { 
 
-  if(playpause2.classList.contains("fa-play")) {
-    y.play();
-    playpause2.classList.remove("fa-play");
-    playpause2.classList.add("fa-pause");
-    playpause2.classList.add("is-playing");
+  if(musicstatus !== 'music2') {
+    setMusicButtonState(playpause2, playIcon2, playpause1, playIcon1);
+    y.play().catch(() => {});
 
     x.pause();
-    playpause1.classList.remove("fa-pause");
-    playpause1.classList.add("fa-play");
-    playpause1.classList.remove("is-playing");
 
     musicstatus = 'music2';
   }
   else{
     y.pause();
-    playpause2.classList.remove("fa-pause");
-    playpause2.classList.add("fa-play");
-    playpause2.classList.remove("is-playing");
+    clearMusicButtonState(playpause2, playIcon2);
+    musicstatus = 'not playing';
   }
   
 } 
@@ -144,12 +153,19 @@ function playAudio2() {
 // Copys the Quote to clipboard on the click
 
 let copyText = document.getElementsByClassName('quote')[0];
+let copyHint = document.getElementsByClassName('quote-hint')[0];
+let copyHintResetTimer;
 
 copyText.addEventListener('click', () => {
-    
-            let text = copyText.innerText;
-            navigator.clipboard.writeText
-                (text);
+  let text = copyText.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+      copyHint.textContent = "Copied";
+
+      clearTimeout(copyHintResetTimer);
+      copyHintResetTimer = setTimeout(() => {
+        copyHint.textContent = "Click the quote to copy it.";
+      }, 1500);
+  });
 
 });
 
@@ -200,10 +216,12 @@ document.addEventListener('keydown', (e) => {
     }
     else if (spacebar.includes(e.key)) {
 
-        if(playpause1.classList.contains('fa-play'))
+        if(musicstatus === 'music1')
           playAudio1();
-        else
+        else if(musicstatus === 'music2')
           playAudio2();
+        else
+          playAudio1();
     }
     else if(escapeKey.includes(e.key)){
      

@@ -116,14 +116,19 @@ body::before {
 .music-button {
   min-width: 8.75rem;
   padding: 0.9rem 1.05rem;
-  background: #111827;
-  color: #fffaf1;
+  --button-bg: #111827;
+  --button-bg-playing: #2563eb;
+  --button-fg: #fffaf1;
+  background: var(--button-bg);
+  color: var(--button-fg);
   font: 600 0.95rem/1 system-ui, sans-serif;
   box-shadow: 0 14px 28px rgba(17, 24, 39, 0.2);
+  position: relative;
 }
 
 .music-button--reverse {
-  background: #7c2d12;
+  --button-bg: #111827;
+  --button-bg-playing: #2563eb;
 }
 
 .music-button i {
@@ -138,7 +143,23 @@ body::before {
 }
 
 .music-button.is-playing {
-  background: var(--accent-strong);
+  background: var(--button-bg-playing);
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.26), 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 0 2px rgba(191, 219, 254, 0.6);
+}
+
+.music-button.is-playing::after {
+  content: "Playing";
+  position: absolute;
+  top: -0.55rem;
+  right: 0.85rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 248, 235, 0.96);
+  color: #1d4ed8;
+  font: 800 0.62rem/1 system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
 }
 
 .quote-card {
